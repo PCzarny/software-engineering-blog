@@ -1,0 +1,48 @@
+---
+title: Easy wins in React
+description:
+createdAt: 2025-12-17T21:40:00+02:00
+lastUpdatedAt: 2025-12-17T21:40:00+02:00
+tags:
+  - react
+  - frontend
+---
+
+# Easy wins in React
+
+1. <StricMode> Component
+[Doc](https://react.dev/reference/react/StrictMode)
+
+Wrap your entire App to get good practices check during development
+
+```jsx
+<StrictMode>
+  <App />
+</StrictMode>
+```
+
+2. <Suspense> Component
+[Doc](https://react.dev/reference/react/Suspense)
+
+Improve UX by displaying fallback when view is loading. It works great with [lazy loading](https://react.dev/reference/react/lazy)
+
+```jsx
+<Suspense fallback={<Loading />}>
+  <SomeComponent />
+</Suspense>
+```
+
+3. ErrorBoundary Coponent
+
+[Doc](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+Wrap your app with ErrorBoundry, to render user friendly error message when app rendering crash
+
+4. Portals
+
+[Doc](https://react.dev/reference/react-dom/createPortal)
+
+Not so common, but might be usefull.
+
+5. useEffect vs useLayoutEffect
+
+[]

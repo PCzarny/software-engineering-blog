@@ -1,0 +1,55 @@
+---
+title: Backend project setup - Cheetsheet
+description:
+createdAt: 2025-12-20T13:40:00+02:00
+lastUpdatedAt: 2025-12-20T13:40:00+02:00
+tags:
+  - backend
+---
+
+# Backend project setup - Cheetsheet
+
+## Development environment
+- environment version manager - like `nvm` for Node with `.nvmrc` file
+- Typescript, linter & enabling strict mode
+  It's easier to add it at the beginging
+- Fromatter - like `prettier`
+  To make sure all contributors follow same styleguide. It's good to add config file to project.
+- aliases
+- Debugger configuration / instruction - eg. for VS Code or local Docker
+- local setup instruction
+
+## Comon elements
+- Input validation
+- Logging
+- Error handling - Error DTO
+- Authenrication
+- Authorization (eg. using roles)
+- Probably some Database or/and Storage
+- Database migration mechanism / seeds
+- Tests - unit, integration, e2e, coverage
+- Feature flags (consider using manager for it ike split.io)
+- Health check
+- Monitoring and metrics - eg. Corologix, DataDog, New Relic, Prometheus
+- distributted tracing
+- Messaging/Events mechanism - like Rabbit or Kafka
+- Background workers
+- Cache - eg. redis
+- Security - SQL injection, XSS, etc
+- Documentation:
+  - ADR
+  - API documentation - eg. OpenAPI
+  - Diagrams - like C4 mode, flow charts, activity diagrams etc
+
+## Deployment
+- Dockerfile
+- CD flow - for example using Github Actions
+- CI flow - use different triggers for different types of tests
+- Secret manager
+- Image repository - like DockerHub, Google Artifact Registry, etc
+- [Optional] Kubernetes for more advanced systems
+- load balancer
+- rate limitter
+- network encryption - eg. forcing HTTPS
+- Backups mechanism
+
