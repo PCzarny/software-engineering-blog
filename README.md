@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Blog Post Guidelines
+
+**Important:** Before creating a new blog post, please read the [Post Creation Guidelines](./POST_GUIDELINES.md).
+
+Key requirements:
+
+- Filename must start with creation date: `YYYY-MM-DD-slug.mdx`
+- Required frontmatter: `title`, `description`, `tags`, `createdAt`, `lastUpdatedAt`
+
+See [POST_GUIDELINES.md](./POST_GUIDELINES.md) for complete details.
+
 ## Getting Started
 
 First, run the development server:

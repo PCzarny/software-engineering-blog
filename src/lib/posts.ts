@@ -5,9 +5,11 @@ import matter from "gray-matter";
 const postsDirectory = path.join(process.cwd(), "src/content/posts");
 
 export interface PostMetadata {
-  title?: string;
-  tags?: string[];
-  date?: string;
+  title: string;
+  description: string;
+  tags: string[];
+  createdAt: string;
+  lastUpdatedAt: string;
   slug: string;
 }
 
@@ -47,8 +49,10 @@ export async function getAllPosts(): Promise<PostMetadata[]> {
         return {
           slug,
           title: data.title || slug,
+          description: data.description || "",
           tags: data.tags || [],
-          date: data.date || null,
+          createdAt: data.createdAt || "",
+          lastUpdatedAt: data.lastUpdatedAt || data.createdAt || "",
           ...data,
         } as PostMetadata;
       })
