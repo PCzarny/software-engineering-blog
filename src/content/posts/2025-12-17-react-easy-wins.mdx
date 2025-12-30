@@ -1,6 +1,6 @@
 ---
 title: Easy wins in React
-description:
+description: "Simple React patterns that improve code quality with minimal effort"
 createdAt: 2025-12-17T21:40:00+02:00
 lastUpdatedAt: 2025-12-17T21:40:00+02:00
 tags:
@@ -10,10 +10,11 @@ tags:
 
 # Easy wins in React
 
-1. <StricMode> Component
+## StrictMode
+
 [Doc](https://react.dev/reference/react/StrictMode)
 
-Wrap your entire App to get good practices check during development
+Wraps your app to detect potential problems during development. Highlights unsafe lifecycles, deprecated APIs, and unexpected side effects.
 
 ```jsx
 <StrictMode>
@@ -21,10 +22,11 @@ Wrap your entire App to get good practices check during development
 </StrictMode>
 ```
 
-2. <Suspense> Component
+## Suspense
+
 [Doc](https://react.dev/reference/react/Suspense)
 
-Improve UX by displaying fallback when view is loading. It works great with [lazy loading](https://react.dev/reference/react/lazy)
+Displays fallback UI while components load. Essential for [lazy loading](https://react.dev/reference/react/lazy) and data fetching.
 
 ```jsx
 <Suspense fallback={<Loading />}>
@@ -32,17 +34,25 @@ Improve UX by displaying fallback when view is loading. It works great with [laz
 </Suspense>
 ```
 
-3. ErrorBoundary Coponent
+## ErrorBoundary
 
 [Doc](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
-Wrap your app with ErrorBoundry, to render user friendly error message when app rendering crash
 
-4. Portals
+Catches rendering errors and displays a fallback UI. Prevents entire app crashes from component errors.
+
+## Portals
 
 [Doc](https://react.dev/reference/react-dom/createPortal)
 
-Not so common, but might be usefull.
+Renders children into a DOM node outside the component hierarchy. Useful for modals, tooltips, and overlays.
 
-5. useEffect vs useLayoutEffect
+```jsx
+createPortal(children, document.body);
+```
 
-[]
+## useEffect vs useLayoutEffect
+
+- **useEffect**: Runs after paint, non-blocking
+- **useLayoutEffect**: Runs synchronously before paint, blocks visual updates
+
+Use `useLayoutEffect` when you need to measure DOM or prevent visual flicker.

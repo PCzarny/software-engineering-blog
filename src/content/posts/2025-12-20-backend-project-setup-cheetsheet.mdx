@@ -1,56 +1,52 @@
 ---
-title: Backend project setup - Cheetsheet
-description:
+title: Backend project setup - Cheatsheet
+description: "Essential checklist for setting up a production-ready backend project"
 createdAt: 2025-12-20T13:40:00+02:00
 lastUpdatedAt: 2025-12-20T13:40:00+02:00
 tags:
   - backend
 ---
 
-# Backend project setup - Cheetsheet
+# Backend project setup - Cheatsheet
 
 ## Development environment
-- environment version manager - like `nvm` for Node with `.nvmrc` file
-- Typescript, linter & enabling strict mode
-  It's easier to add it at the beginging
-- Fromatter - like `prettier`
-  To make sure all contributors follow same styleguide. It's good to add config file to project.
-- aliases
-- Debugger configuration / instruction - eg. for VS Code or local Docker
-- local setup instruction
 
-## Comon elements
-- Input validation
-- Logging
-- Error handling - Error DTO
-- Authenrication
-- Authorization (eg. using roles)
-- Probably some Database or/and Storage
-- Database migration mechanism / seeds
-- Tests - unit, integration, e2e, coverage
-- Feature flags (consider using manager for it ike split.io)
-- Health check
-- Monitoring and metrics - eg. Corologix, DataDog, New Relic, Prometheus
-- distributted tracing
-- Messaging/Events mechanism - like Rabbit or Kafka
-- Background workers
-- Cache - eg. redis
-- Security - SQL injection, XSS, etc
-- Documentation:
-  - ADR
-  - API documentation - eg. OpenAPI
-  - Diagrams - like C4 mode, flow charts, activity diagrams etc
+- **Version manager**: Use `nvm` with `.nvmrc` to lock Node version
+- **TypeScript**: Enable strict mode from the start
+- **Linter**: Catch errors early (ESLint, TSLint)
+- **Formatter**: Prettier with shared config ensures consistent style
+- **Path aliases**: Simplify imports (`@/utils` instead of `../../../utils`)
+- **Debugger**: VS Code launch config or Docker debugging setup
+- **Setup docs**: Clear local development instructions
+
+## Common elements
+
+- **Input validation**: Validate all user inputs (Zod, Joi, class-validator)
+- **Logging**: Structured logs with levels. Consider JSON format for external log tools
+- **Error handling**: Standardized error DTOs and error middleware
+- **Authentication**: JWT, OAuth, or session-based auth
+- **Authorization**: Role-based or permission-based access control (RBAC)
+- **Database**: ORM/ODM with migration system and seed scripts
+- **Storage**: Store and serve files or blobs (local, cloud providers like S3, GCS)
+- **Testing**: Unit, integration, E2E tests with coverage thresholds
+- **Feature flags**: Gradual rollouts (Split.io, LaunchDarkly)
+- **Health checks**: `/health` endpoint for monitoring
+- **Monitoring**: Metrics and alerting (Corologix, Datadog, New Relic, Prometheus)
+- **Distributed tracing**: Request correlation across services
+- **Messaging**: Event-driven architecture (RabbitMQ, Kafka)
+- **Background workers**: Async job processing
+- **Cache**: For example Redis for session storage and performance
+- **Security**: SQL injection prevention, XSS protection, CSRF tokens
+- **Documentation**: ADRs, OpenAPI specs, architecture diagrams (C4 model)
 
 ## Deployment
-- Dockerfile
-- CD flow - for example using Github Actions
-- CI flow - use different triggers for different types of tests
-- Secret manager
-- Image repository - like DockerHub, Google Artifact Registry, etc
-- [Optional] Kubernetes for more advanced systems
-- Scaling
-- load balancer
-- rate limitter
-- network encryption - eg. forcing HTTPS
-- Backups mechanism
 
+- **Containerization**: Dockerfile with multi-stage builds
+- **CI/CD**: GitHub Actions with separate triggers for test types
+- **Secrets**: Environment-specific secret management
+- **Registry**: Container image storage (DockerHub, GCR, ECR)
+- **Orchestration**: Kubernetes for complex deployments (optional)
+- **Scaling**: Horizontal scaling with load balancer
+- **Rate limiting**: Protect APIs from abuse
+- **Encryption**: Enforce HTTPS, TLS for internal communication
+- **Backups**: Automated database and data backups
