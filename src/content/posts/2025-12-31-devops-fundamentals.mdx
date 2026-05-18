@@ -1,0 +1,81 @@
+---
+title: DevOps fundamentals
+description: "Essential DevOps concepts and deployment strategies for modern applications"
+createdAt: 2025-12-31T10:00:00+02:00
+lastUpdatedAt: 2025-12-31T10:00:00+02:00
+tags:
+  - devops
+  - deployment
+  - infrastructure
+---
+
+# DevOps fundamentals
+
+## Core concepts
+
+- **CI/CD**: Automate build, test, and deployment pipelines
+- **Infrastructure as Code**: Manage infrastructure with code (Terraform, CloudFormation)
+- **Containerization**: Package applications with dependencies (Docker)
+- **Orchestration**: Manage containers at scale (Kubernetes, Docker Swarm)
+- **Monitoring**: Track application health and performance
+- **Logging**: Centralized log aggregation and analysis
+- **Configuration management**: Environment-specific configs (12-factor app)
+
+## Deployment strategies
+
+### Blue-Green Deployment
+
+Maintains two identical production environments. Switch traffic from blue (current) to green (new) instantly.
+
+**Benefits:**
+- Zero-downtime deployments
+- Instant rollback by switching back to blue
+- Safe testing of new version before traffic switch
+
+**Process:**
+1. Deploy new version to green environment
+2. Run smoke tests on green
+3. Switch load balancer to green
+4. Monitor green environment
+5. Keep blue as backup or decommission after validation
+
+**Use cases:** Critical applications requiring zero downtime, database migrations, major version updates
+
+### Canary Releases
+
+Gradually roll out new version to a small percentage of users, then expand if successful.
+
+**Benefits:**
+- Early detection of issues with minimal impact
+- Gradual risk reduction
+- Real user testing before full rollout
+
+**Process:**
+1. Deploy new version alongside current
+2. Route 5-10% of traffic to new version
+3. Monitor metrics, errors, performance
+4. Gradually increase traffic (10% → 25% → 50% → 100%)
+5. Rollback if issues detected
+
+**Use cases:** Feature releases, A/B testing, performance-sensitive changes, large user bases
+
+## Comparison
+
+| Strategy | Downtime | Rollback Speed | Risk Level | Complexity |
+|----------|----------|----------------|------------|------------|
+| Blue-Green | Zero | Instant | Low | Medium |
+| Canary | Zero | Gradual | Very Low | High |
+
+## Best practices
+
+- **Health checks**: Verify deployment success before traffic switch
+- **Feature flags**: Control feature visibility independently of deployment
+- **Automated rollback**: Trigger rollback on error thresholds
+- **Monitoring**: Real-time metrics during deployment
+- **Database migrations**: Plan backward-compatible schema changes
+- **Testing**: Comprehensive test suite before production deployment
+
+
+
+
+

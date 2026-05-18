@@ -1,0 +1,83 @@
+---
+title: JavaScript event loop task priorities
+description: "Short summary of call stack, microtasks, macrotask queues, and what runs in which order"
+createdAt: "2026-05-17T22:05:00+02:00"
+lastUpdatedAt: "2026-05-17T22:05:00+02:00"
+tags:
+  - javascript
+  - event-loop
+  - async
+---
+
+# JavaScript event loop task priorities
+
+Summary based on [Event Loop Task Priorities in Javascript](https://medium.com/@piyalidas.it/event-loop-task-priorities-in-javascript-372affd421c1) by Piyali Das.
+
+## Execution order (highest to lowest)
+
+1. **Synchronous code (call stack)**
+2. **Microtasks** — drain the whole queue before anything else
+3. **Macrotasks (task queues)** — one task per loop turn, then microtasks are checked again
+4. **Rendering** — blocked until the microtask queue is empty
+
+Example output for
+
+```
+console.log(1)
+setTimeout(() => console.log(2), 0)
+Promise.then(() => console.log(3))
+console.log(4)
+```
+
+is **1, 4, 3, 2** — not source order.
+
+## Categories and operations
+
+### Call stack (synchronous)
+
+Runs immediately, top to bottom, until the current script chunk finishes.
+
+- `console.log`, variable assignments, function calls
+- Any code that does not schedule async work
+
+### Microtask queue
+
+Checked **every time the call stack becomes empty**. All microtasks must run (including ones added while draining) before the next macrotask or render.
+
+| Operations                            |
+| ------------------------------------- |
+| `Promise` `.then` / `.catch` handlers |
+| `queueMicrotask()`                    |
+
+### Macrotask queues (regular tasks)
+
+Browsers may use **one or more** task queues (implementation-specific). Node.js uses a dedicated **timers** queue for timer callbacks.
+
+| Queue (conceptual) | Operations                                    |
+| ------------------ | --------------------------------------------- |
+| Timers             | `setTimeout`, `setInterval` callbacks         |
+| Network / HTTP     | Fetch, XHR, and similar I/O callbacks         |
+| User events        | Click, keyboard, and other DOM event handlers |
+
+**Rules:**
+
+- Tasks in the **same queue** run FIFO (order they were queued).
+- Tasks of the **same type** go to the **same queue**.
+- The browser may pick the next task from **any** queue between turns; ordering across queues is not guaranteed.
+
+### Rendering
+
+The rendering pipeline runs only after pending microtasks are cleared — microtasks can delay paint.
+
+## One loop turn (simplified)
+
+```text
+Run sync code → call stack empty?
+  → drain ALL microtasks
+  → run ONE macrotask
+  → repeat (microtasks first again)
+```
+
+## Reference
+
+- [Event Loop Task Priorities in Javascript — Piyali Das (Medium)](https://medium.com/@piyalidas.it/event-loop-task-priorities-in-javascript-372affd421c1)

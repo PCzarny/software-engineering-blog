@@ -56,3 +56,24 @@ createPortal(children, document.body);
 - **useLayoutEffect**: Runs synchronously before paint, blocks visual updates
 
 Use `useLayoutEffect` when you need to measure DOM or prevent visual flicker.
+
+## useTransition
+
+[Doc](https://react.dev/reference/react/useTransition)
+
+Manages concurrent UI updates in a way that keeps the app responsive. Use it to mark state updates as "transitions" (e.g. filtering, tab switches) so React can prioritize urgent updates (like typing/text input).
+
+```jsx
+const [isPending, startTransition] = useTransition();
+
+function handleChange(e) {
+  const nextValue = e.target.value;
+  startTransition(() => {
+    setInput(nextValue); // Non-urgent: e.g. expensive filtering
+  });
+}
+```
+
+- `isPending` is `true` while React is performing the transition.
+- Transitions help avoid UI blocking and improve user experience for slow updates.
+

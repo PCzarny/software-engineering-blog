@@ -50,3 +50,6 @@ tags:
 - **Rate limiting**: Protect APIs from abuse
 - **Encryption**: Enforce HTTPS, TLS for internal communication
 - **Backups**: Automated database and data backups
+- **Circuit breaker**: Protect services from cascading failures with circuit breakers (e.g., `opossum`, `cockatiel` in Node.js, or use built-in support in advanced API gateways)
+- **Retry mechanism**: Use automated retry strategies for transient errors (with exponential backoff, e.g., `cockatiel`, `promise-retry`, or built-in queue retries for background workers)
+
